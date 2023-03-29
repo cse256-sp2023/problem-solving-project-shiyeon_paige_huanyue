@@ -16,8 +16,10 @@ let sel_section = define_new_user_select_field(user_id_prefix, select_button_tex
     $('#user_selected_btn').attr('username', selected_user)
     $('#generated_permission').attr('username', selected_user)
 })
+let users_list = user_list('userlist');
 // Add an interface element to allow us to select a user. (selector)
 $('#sidepanel').prepend(sel_section)
+$('#sidepanel').append(users_list);
 
 // Dialogs for 'i' icons
 // Step 1: Define the dialog
