@@ -253,7 +253,7 @@ function make_file_element(file_obj) {
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                     <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
                 </button>
-                <button class="ui-button ui-widget ui-corner-all perfilembutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
+                <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
                     select
                 </button>
             </h3>
@@ -276,7 +276,7 @@ function make_file_element(file_obj) {
             <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                 <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
             </button>
-            <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_perfilembutton"> 
+            <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
                 select
             </button>
         </div>`)
