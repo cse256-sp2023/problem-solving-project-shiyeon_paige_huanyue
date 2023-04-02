@@ -12,7 +12,7 @@ $('#generated_permission').attr('filepath', '/C/presentation_documents/important
 
 // Set id_prefix for selector
 let user_id_prefix = "user_selected_btn"
-let select_button_text = "User Select"
+let select_button_text = "Select User"
 let sel_section = define_new_user_select_field(user_id_prefix, select_button_text, on_user_change = function(selected_user){
     $('#user_selected_btn').attr('username', selected_user)
     $('#generated_permission').attr('username', selected_user)
@@ -22,7 +22,7 @@ let users_list = user_list('userlist');
 $('#sidepanel').prepend(sel_section)
 $('#sidepanel').append(users_list);
 
-$('#sidepanel').prepend("<h3>Select a user then select a folder to check permissions of selected user</h3>")
+$('#sidepanel').prepend("<h3>Select a user then select a folder/file to check permissions of selected user</h3>")
 
 
 // Dialogs for 'i' icons
@@ -258,7 +258,7 @@ function make_file_element(file_obj) {
                     <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
                 </button>
                 <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
-                    select
+                    Select Folder
                 </button>
             </h3>
         </div>`)
@@ -281,7 +281,7 @@ function make_file_element(file_obj) {
                 <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
             </button>
             <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
-                select
+                Select File
             </button>
         </div>`)
     }
