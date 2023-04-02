@@ -60,7 +60,7 @@ function make_user_list(id_prefix, usermap, add_attributes = false) {
     return u_elements
 }
 
-//make a list of all users
+//make a list of all users in the file
 function user_list(id_prefix){
     let users = []
     for(i in all_users){
