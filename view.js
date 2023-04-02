@@ -6,6 +6,7 @@ let perm_id_prefix = "generated_permission"
 let new_panel = define_new_effective_permissions(perm_id_prefix, add_info_col = true, which_permissions = null)
 // Show a sidepanel of permissmissions (checkbox)
 $('#sidepanel').append(new_panel)
+
 //**hardcode the filepath here**
 $('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
 
@@ -20,6 +21,9 @@ let users_list = user_list('userlist');
 // Add an interface element to allow us to select a user. (selector)
 $('#sidepanel').prepend(sel_section)
 $('#sidepanel').append(users_list);
+
+$('#sidepanel').prepend("<h3>Select a user then select a folder to check permissions of selected user</h3>")
+
 
 // Dialogs for 'i' icons
 // Step 1: Define the dialog
