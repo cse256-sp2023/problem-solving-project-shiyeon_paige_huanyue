@@ -6,12 +6,13 @@ let perm_id_prefix = "generated_permission"
 let new_panel = define_new_effective_permissions(perm_id_prefix, add_info_col = true, which_permissions = null)
 // Show a sidepanel of permissmissions (checkbox)
 $('#sidepanel').append(new_panel)
+
 //**hardcode the filepath here**
 $('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
 
 // Set id_prefix for selector
 let user_id_prefix = "user_selected_btn"
-let select_button_text = "User Select"
+let select_button_text = "Select User"
 let sel_section = define_new_user_select_field(user_id_prefix, select_button_text, on_user_change = function(selected_user){
     $('#user_selected_btn').attr('username', selected_user)
     $('#generated_permission').attr('username', selected_user)
@@ -20,6 +21,9 @@ let users_list = user_list('userlist');
 // Add an interface element to allow us to select a user. (selector)
 $('#sidepanel').prepend(sel_section)
 $('#sidepanel').append(users_list);
+
+$('#sidepanel').prepend("<h3>Select a user then select a folder/file to check permissions of selected user</h3>")
+
 
 // Dialogs for 'i' icons
 // Step 1: Define the dialog
@@ -253,8 +257,8 @@ function make_file_element(file_obj) {
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                     <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
                 </button>
-                <button class="ui-button ui-widget ui-corner-all perfilembutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
-                    select
+                <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
+                    Select Folder
                 </button>
             </h3>
         </div>`)
@@ -276,8 +280,8 @@ function make_file_element(file_obj) {
             <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                 <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
             </button>
-            <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_perfilembutton"> 
-                select
+            <button class="ui-button ui-widget ui-corner-all permfilebutton" path="${file_hash}" id="${file_hash}_permfilebutton"> 
+                Select File
             </button>
         </div>`)
     }

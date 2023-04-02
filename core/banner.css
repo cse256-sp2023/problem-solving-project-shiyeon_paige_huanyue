@@ -169,3 +169,9 @@ span {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
+
+#sidepanel{
+    padding: 10px;
+    background-color: rgb(246, 246, 246);
+    font-family:Arial, sans-serif;
+}
