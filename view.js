@@ -21,8 +21,9 @@ let users_list = user_list('userlist');
 // Add an interface element to allow us to select a user. (selector)
 $('#sidepanel').prepend(sel_section)
 $('#sidepanel').append(users_list);
+$('#sidepanel').prepend("<h4>Select a user then select a folder/file to check permissions of selected user</h4>")
+$('#sidepanel').prepend("<h3>Effective Permissions</h3>")
 
-$('#sidepanel').prepend("<h3>Select a user then select a folder/file to check permissions of selected user</h3>")
 
 
 // Dialogs for 'i' icons
