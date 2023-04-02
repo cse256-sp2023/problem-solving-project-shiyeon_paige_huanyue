@@ -327,3 +327,8 @@ $('#html-loc').find('*').uniqueId()
 
 // Challenges / bonus ideas
 $('.permbutton').append('Permissions')
+
+//open dialog with who the users are when icon is clicked
+$('.oi').click(function(e){
+    console.log("clicked icon!");
+})
