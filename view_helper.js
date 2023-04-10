@@ -470,6 +470,7 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
                     console.log(define_permission_checkboxes("view_new_user_perm", null) )
                     let table = define_permission_checkboxes("view_new_user_perm", null);
                     table.attr('username', selected_value)
+                    // TODO: fix file path and closes button
                     table.attr('filepath', "/C")
                     
                    
