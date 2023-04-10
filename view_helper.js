@@ -302,7 +302,7 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
 }
 
 // define an element which will display *individual* permissions for a given file and user, and allow for changing them by checking/unchecking the checkboxes.
-function define_permission_checkboxes(id_prefix, which_permissions = null){
+function define_permission_checkboxes( id_prefix, which_permissions = null){
     // Set up table and header:
     let perm_table = $(`
     <table id="${id_prefix}" class="ui-widget-content" width="100%">
@@ -464,7 +464,22 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
                 let to_populate_id = $(this).attr('to_populate') // which field do we need to populate?
                 let selected_value = all_users_selectlist.attr('selected_item') // what is the user name that was selected?
                 $(`#${to_populate_id}`).attr('selected_user', selected_value) // populate the element with the id
-                $( this ).dialog( "close" );
+                // perm_add_user_field
+                if(to_populate_id == "perm_add_user_field"){
+                    alert("hello " + selected_value + to_populate_id)
+                    console.log(define_permission_checkboxes("view_new_user_perm", null) )
+                    let table = define_permission_checkboxes("view_new_user_perm", null);
+                    table.attr('username', selected_value)
+                    table.attr('filepath', "/C")
+                    
+                   
+                    $( this ).append(table);
+                }
+                else{
+                    $( this ).dialog( "close" );
+                }
+
+               
             }
         }
     }
