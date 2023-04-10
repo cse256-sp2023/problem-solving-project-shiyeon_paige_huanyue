@@ -302,7 +302,7 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
 }
 
 // define an element which will display *individual* permissions for a given file and user, and allow for changing them by checking/unchecking the checkboxes.
-function define_permission_checkboxes( id_prefix, which_permissions = null){
+function define_permission_checkboxes(id_prefix, which_permissions = null){
     // Set up table and header:
     let perm_table = $(`
     <table id="${id_prefix}" class="ui-widget-content" width="100%">
@@ -464,23 +464,7 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
                 let to_populate_id = $(this).attr('to_populate') // which field do we need to populate?
                 let selected_value = all_users_selectlist.attr('selected_item') // what is the user name that was selected?
                 $(`#${to_populate_id}`).attr('selected_user', selected_value) // populate the element with the id
-                // perm_add_user_field
-                if(to_populate_id == "perm_add_user_field"){
-                    alert("hello " + selected_value + to_populate_id)
-                    console.log(define_permission_checkboxes("view_new_user_perm", null) )
-                    let table = define_permission_checkboxes("view_new_user_perm", null);
-                    table.attr('username', selected_value)
-                    // TODO: fix file path and closes button
-                    table.attr('filepath', "/C")
-                    
-                   
-                    $( this ).append(table);
-                }
-                else{
-                    $( this ).dialog( "close" );
-                }
-
-               
+                $( this ).dialog( "close" );
             }
         }
     }
@@ -488,6 +472,33 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
 
 // add stuff to the dialog:
 user_select_dialog.append(all_users_selectlist)
+
+// Make the dialog for folder selector:
+folder_select_dialog = define_new_dialog('folder_select_dialog', 'Select Folder', {
+    buttons: {
+        Cancel: {
+            text: "Cancel",
+            id: "folder_select_cancel_button",
+            click: function() {
+                $( this ).dialog( "close" );
+            },
+        },
+        OK: {
+            text: "OK",
+            id: "user_select_ok_button",
+            click: function() {
+                // When "OK" is clicked, we want to populate some other element with the selected user name 
+                //(to pass along the selection information to whoever opened this dialog)
+                let to_populate_id = $(this).attr('to_populate') // which field do we need to populate?
+                let selected_value = all_users_selectlist.attr('selected_item') // what is the user name that was selected?
+                $(`#${to_populate_id}`).attr('selected_user', selected_value) // populate the element with the id
+                $( this ).dialog( "close" );
+            }
+        }
+    }
+})
+
+folder_select_dialog.append()
 
 // Call this function whenever you need a user select dialog; it will automatically populate the 'selected_user' attribute of the element with id to_populate_id
 function open_user_select_dialog(to_populate_id) {
@@ -525,6 +536,29 @@ function define_new_user_select_field(id_prefix, select_button_text, on_user_cha
     return sel_section
 }
 
+
+function define_new_folder_select_field(id_prefix, select_button_text, on_user_change = function(selected_folder){}){
+    // Make the element:
+    let sel_section = $(`<div id="${id_prefix}_line" class="section">
+            <span id="${id_prefix}_field" class="ui-widget-content" style="width: 80%;display: inline-block;">&nbsp</span>
+            <button id="${id_prefix}_button" class="ui-button ui-widget ui-corner-all">${select_button_text}</button>
+        </div>`)
+
+    // Open user select on button click:
+    sel_section.find(`#${id_prefix}_button`).click(function(){
+        open_user_select_dialog(`${id_prefix}_field`)
+    })
+
+    // Set up an observer to watch the attribute change and change the field
+    let field_selector = sel_section.find(`#${id_prefix}_field`)
+    define_attribute_observer(field_selector, 'selected_user', function(new_username){
+        field_selector.text(new_username)
+        // call the function for additional processing of user change:
+        on_user_change(new_username)
+    })
+
+    return sel_section
+}
 //---- misc. ----
 
 // Get a (very simple) text representation of a permissions explanation
