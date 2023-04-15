@@ -21,7 +21,7 @@ let sel_section = define_new_user_select_field(user_id_prefix, select_button_tex
 
 // Set id_prefix for folder selecter
 let folder_id_prefix = "folder_selected_btn";
-let folder_sel_section = define_new_user_select_field(folder_id_prefix, "Select Folder/File", on_user_change = function(selected_folder){
+let folder_sel_section = define_new_folder_select_field(folder_id_prefix, "Select Folder/File", on_user_change = function(selected_folder){
     $('#folder_selected_btn').attr('filepath', selected_folder)
     $('#generated_permission').attr('filepath', selected_folder)
 })

@@ -55,6 +55,8 @@ perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add...', o
         if( file_permission_users.find(`#${expected_user_elem_id}`).length === 0 ) { // if such a user element doesn't already exist
             new_user_elem = make_user_elem('permdialog_file_user', selected_user)
             file_permission_users.append(new_user_elem)
+            alert("SUCCESSFUL ACTION ALERT: Adding a new user: "+ selected_user + ". Please select the user and make the furure change.");
+            grouped_permissions.attr('username',selected_user);
         }
     }    
 })
@@ -103,6 +105,7 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
 
                 // Finally, close this dialog:
                 $( this ).dialog( "close" );
+                alert("SUCCESSFUL ACTION ALERT: Removing the user: "+all_users[username]);
 
             },
         },
@@ -354,7 +357,7 @@ $('#adv_perm_inheritance').change(function(){
         // has just been turned off - pop up dialog with add/remove/cancel
         $(`<div id="add_remove_cancel" title="Security">
             Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
-            - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
+            - Click Convert to convert and add inherited parent permissions as explicit permissions on this object<br/>
             - Click Remove to remove inherited parent permissions from this object<br/>
             - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
         </div>`).dialog({ // TODO: don't create this dialog on the fly
@@ -363,8 +366,8 @@ $('#adv_perm_inheritance').change(function(){
             appendTo: "#html-loc",
             position: { my: "top", at: "top", of: $('#html-loc') },
             buttons: {
-                Add: {
-                    text: "Add",
+                Convert: {
+                    text: "Convert🔄",
                     id: "adv-inheritance-add-button",
                     click: function() {
                         let filepath = $('#advdialog').attr('filepath')
@@ -376,7 +379,7 @@ $('#adv_perm_inheritance').change(function(){
                     },
                 },
                 Remove: {
-                    text: "Remove",
+                    text: "Remove🗑️",
                     id: "adv-inheritance-remove-button",
                     click: function() {
                         let filepath = $('#advdialog').attr('filepath')
@@ -389,7 +392,7 @@ $('#adv_perm_inheritance').change(function(){
                     },
                 },
                 Cancel: {
-                    text: "Cancel",
+                    text: "Cancel🗙",
                     id: "adv-inheritance-cancel-button",
                     click: function() {
                         $('#adv_perm_inheritance').prop('checked', true) // undo unchecking

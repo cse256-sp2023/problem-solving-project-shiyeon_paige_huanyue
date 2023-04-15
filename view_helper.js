@@ -445,7 +445,7 @@ all_users_selectlist = define_single_select_list('user_select_list')
 all_user_elements = make_user_list('user_select', all_users)
 all_users_selectlist.append(all_user_elements)
 
-// Make the dialog:
+// Make the dialog for select user:
 user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
     buttons: {
         Cancel: {
@@ -473,8 +473,18 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
 // add stuff to the dialog:
 user_select_dialog.append(all_users_selectlist)
 
+
+// -- a general-purpose Folder Select dialog which can be opened when we need to select a folder. -- 
+// Make a selectable list which will store all of the folders, and automatically keep track of which one is selected.
+all_folders_selectlist = define_single_select_list('folder_select_list')
+
+// Make the elements which reperesent all folders/files, and add them to the selectable
+all_folders_elements = make_user_list('folder_select', path_to_file)
+all_folders_selectlist.append(all_folders_elements)
+
 // Make the dialog for folder selector:
 folder_select_dialog = define_new_dialog('folder_select_dialog', 'Select Folder', {
+    width: 450,
     buttons: {
         Cancel: {
             text: "Cancel",
@@ -490,15 +500,15 @@ folder_select_dialog = define_new_dialog('folder_select_dialog', 'Select Folder'
                 // When "OK" is clicked, we want to populate some other element with the selected user name 
                 //(to pass along the selection information to whoever opened this dialog)
                 let to_populate_id = $(this).attr('to_populate') // which field do we need to populate?
-                let selected_value = all_users_selectlist.attr('selected_item') // what is the user name that was selected?
-                $(`#${to_populate_id}`).attr('selected_user', selected_value) // populate the element with the id
+                let selected_value = all_folders_selectlist.attr('selected_item') // what is the file name that was selected?
+                $(`#${to_populate_id}`).attr('selected_folder', selected_value) // populate the element with the id
                 $( this ).dialog( "close" );
             }
         }
     }
 })
 
-folder_select_dialog.append()
+folder_select_dialog.append(all_folders_selectlist)
 
 // Call this function whenever you need a user select dialog; it will automatically populate the 'selected_user' attribute of the element with id to_populate_id
 function open_user_select_dialog(to_populate_id) {
@@ -506,6 +516,11 @@ function open_user_select_dialog(to_populate_id) {
 
     user_select_dialog.attr('to_populate', to_populate_id)
     user_select_dialog.dialog('open')
+}
+
+function open_folder_select_dialog(to_populate_id) {
+    folder_select_dialog.attr('to_populate', to_populate_id)
+    folder_select_dialog.dialog('open')
 }
 
 // define a new user-select field which opens up a user-select dialog and stores the result in its own selected_user attribute.
@@ -536,8 +551,8 @@ function define_new_user_select_field(id_prefix, select_button_text, on_user_cha
     return sel_section
 }
 
-
-function define_new_folder_select_field(id_prefix, select_button_text, on_user_change = function(selected_folder){}){
+// define a new folder-select field which opens up a folder/file-select dialog and stores the result in its own selected_folder attribute.
+function define_new_folder_select_field(id_prefix, select_button_text, on_folder_change = function(selected_folder){}){
     // Make the element:
     let sel_section = $(`<div id="${id_prefix}_line" class="section">
             <span id="${id_prefix}_field" class="ui-widget-content" style="width: 80%;display: inline-block;">&nbsp</span>
@@ -546,15 +561,15 @@ function define_new_folder_select_field(id_prefix, select_button_text, on_user_c
 
     // Open user select on button click:
     sel_section.find(`#${id_prefix}_button`).click(function(){
-        open_user_select_dialog(`${id_prefix}_field`)
+        open_folder_select_dialog(`${id_prefix}_field`)
     })
 
     // Set up an observer to watch the attribute change and change the field
     let field_selector = sel_section.find(`#${id_prefix}_field`)
-    define_attribute_observer(field_selector, 'selected_user', function(new_username){
-        field_selector.text(new_username)
+    define_attribute_observer(field_selector, 'selected_folder', function(new_foldername){
+        field_selector.text(new_foldername)
         // call the function for additional processing of user change:
-        on_user_change(new_username)
+        on_folder_change(new_foldername)
     })
 
     return sel_section
