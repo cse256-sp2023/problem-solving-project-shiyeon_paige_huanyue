@@ -35,7 +35,7 @@ $('#sidepanel').prepend(sel_section)
 //$('#sidepanel').append(users_list);
 $('#sidepanel').prepend("<h4>Select a user then select a folder/file to check permissions of selected user</h4>")
 $('#sidepanel').prepend("<h3>Effective Permissions</h3>")
-
+$('#sidepanel').append("<h4>After selected user and file, you would click i icons to see more detailed explanation about the permissions.</h4>")
 
 
 
@@ -337,7 +337,7 @@ $('.permfilebutton').click( function( e ) {
     let path = e.currentTarget.getAttribute('path');
     $('#generated_permission').attr('filepath', path)
     $('#folder_selected_btn_field').text(path);
-    
+
     e.stopPropagation()
     emitter.dispatchEvent(new CustomEvent('userEvent', { detail: new ClickEntry(ActionEnum.CLICK, (e.clientX + window.pageXOffset), (e.clientY + window.pageYOffset), e.target.id,new Date().getTime()) }))
 });
