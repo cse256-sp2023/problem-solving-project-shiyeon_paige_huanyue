@@ -35,7 +35,8 @@ $('#sidepanel').prepend(sel_section)
 //$('#sidepanel').append(users_list);
 $('#sidepanel').prepend("<h4>Select a user then select a folder/file to check permissions of selected user</h4>")
 $('#sidepanel').prepend("<h3>Effective Permissions</h3>")
-$('#sidepanel').append("<h4>After selected user and file, you would click i icons to see more detailed explanation about the permissions.</h4>")
+$('#sidepanel').append('<h4>After selected user and file, you would click <span class="fa fa-info-circle"/> icons to see more detailed explanation about the permissions.</h4>')
+
 
 
 
