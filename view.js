@@ -336,6 +336,7 @@ $('.permfilebutton').click( function( e ) {
     // Set the path and open dialog:
     let path = e.currentTarget.getAttribute('path');
     $('#generated_permission').attr('filepath', path)
+    $('#folder_selected_btn_field').text(path);
     
     e.stopPropagation()
     emitter.dispatchEvent(new CustomEvent('userEvent', { detail: new ClickEntry(ActionEnum.CLICK, (e.clientX + window.pageXOffset), (e.clientY + window.pageYOffset), e.target.id,new Date().getTime()) }))
