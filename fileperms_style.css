@@ -36,3 +36,8 @@
 .no-close .ui-dialog-titlebar-close {
     display: none;
 }
+
+.perm_info:hover span {
+    padding-right: 25px;
+    background-color: #007fff;
+  }

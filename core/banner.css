@@ -175,3 +175,10 @@ span {
     background-color: rgb(246, 246, 246);
     font-family:Arial, sans-serif;
 }
+
+.perm_info:hover {
+    transform: scale(1.5);
+    cursor:pointer;
+    color: red;
+  }
+  

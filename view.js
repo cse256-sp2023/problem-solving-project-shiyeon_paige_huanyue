@@ -11,19 +11,33 @@ $('#filestructure').append("What Is THis")
 //**hardcode the filepath here**
 $('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
 
-// Set id_prefix for selector
+// Set id_prefix for user selector
 let user_id_prefix = "user_selected_btn"
 let select_button_text = "Select User"
 let sel_section = define_new_user_select_field(user_id_prefix, select_button_text, on_user_change = function(selected_user){
     $('#user_selected_btn').attr('username', selected_user)
     $('#generated_permission').attr('username', selected_user)
 })
+
+
+// Set id_prefix for folder selecter
+let folder_id_prefix = "folder_selected_btn";
+let folder_sel_section = define_new_folder_select_field(folder_id_prefix, "Select Folder/File", on_user_change = function(selected_folder){
+    $('#folder_selected_btn').attr('filepath', selected_folder)
+    $('#generated_permission').attr('filepath', selected_folder)
+})
+
 let users_list = user_list('userlist');
+// Add an interface element to allow us to select a folder. (selector)
+$('#sidepanel').prepend(folder_sel_section);
 // Add an interface element to allow us to select a user. (selector)
 $('#sidepanel').prepend(sel_section)
+
 //$('#sidepanel').append(users_list);
 $('#sidepanel').prepend("<h4>Select a user then select a folder/file to check permissions of selected user</h4>")
 $('#sidepanel').prepend("<h3>Effective Permissions</h3>")
+$('#sidepanel').append('<h4>After selected user and file, you would click <span class="fa fa-info-circle"/> icons to see more detailed explanation about the permissions.</h4>')
+
 
 
 
@@ -324,7 +338,8 @@ $('.permfilebutton').click( function( e ) {
     // Set the path and open dialog:
     let path = e.currentTarget.getAttribute('path');
     $('#generated_permission').attr('filepath', path)
-    
+    $('#folder_selected_btn_field').text(path);
+
     e.stopPropagation()
     emitter.dispatchEvent(new CustomEvent('userEvent', { detail: new ClickEntry(ActionEnum.CLICK, (e.clientX + window.pageXOffset), (e.clientY + window.pageYOffset), e.target.id,new Date().getTime()) }))
 });
