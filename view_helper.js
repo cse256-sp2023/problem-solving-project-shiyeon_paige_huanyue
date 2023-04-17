@@ -183,6 +183,7 @@ function define_new_effective_permissions(id_prefix, add_info_col = false, which
         effective_container.append(row)
     }
 
+    //IMPORTANT//
     // Define how to update contents on attribute change:
     let update_effective_contents = function(){
         // get current settings:
@@ -248,6 +249,7 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
 
     group_table.find('.groupcheckbox').prop('disabled', true)// disable all checkboxes to start
 
+    //IMPORTANT//
     // Update checkboxes when either user or file changes:
     let update_group_checkboxes = function(){
 
@@ -352,6 +354,7 @@ function define_permission_checkboxes(id_prefix, which_permissions = null){
             //change name on table:
             $(`#${id_prefix}_header_username`).text(username)
 
+            //IMPORTANT//
             // Get permissions:
             let all_perms = get_total_permissions(path_to_file[filepath], username)
             for( ace_type in all_perms) { // 'allow' and 'deny'
@@ -532,6 +535,35 @@ function getExplanationText(explanation) {
     ${ explanation.text_explanation ? `(${explanation.text_explanation})`  : '' }.
     `
 }
+
+//Define a function that prints out permission of the user that was selected in the permission panel
+let update_changed_permission = function(){
+    // get current settings:
+    let filepath = document.getElementById('permdialog_objname_namespan')
+    /*let username = effective_container.attr('username')
+    // if both properties are set correctly:
+    if( username && username.length > 0 && (username in all_users) &&
+        filepath && filepath.length > 0 && (filepath in path_to_file)) {
+        //clear out the checkboxes:
+        effective_container.find(`.effectivecheckcell`).empty()
+
+        // Set checkboxes correctly for given file and user:
+        for(let p of which_permissions) {
+            let p_id = p.replace(/[ \/]/g, '_') //get jquery-readable id
+            // if the actual model would allow an action with permission
+            if( allow_user_action(path_to_file[filepath], all_users[username], p)) {
+                // This action is allowed. Find the checkbox cell and put a checkbox there.
+                let this_checkcell = effective_container.find(`#${id_prefix}_checkcell_${p_id}`)
+                this_checkcell.append(`<span id="${id_prefix}_checkbox_${p_id}" class="oi oi-check"/>`)
+            }
+        }
+    }*/
+    console.log(filepath);
+}
+
+
+
+
 
 //---- some universal HTML set-up so you don't have to do it in each wrapper.html ----
 $('#filestructure').css({
