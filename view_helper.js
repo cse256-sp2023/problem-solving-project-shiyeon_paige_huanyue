@@ -227,6 +227,9 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
             <th id="${id_prefix}_header_allow">Allow</th>
             <th id="${id_prefix}_header_deny">Deny</th>
         </tr>
+        <tr style='font-family: "Times New Roman", Times serif; color: #007fff;'>
+        <th id="group_members"></th>
+        </tr>
     </table>
     `)
 

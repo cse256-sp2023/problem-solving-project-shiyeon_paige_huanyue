@@ -44,6 +44,13 @@ grouped_permissions.addClass('section') // add a 'section' class to the grouped_
 file_permission_users = define_single_select_list('permdialog_file_user_list', function(selected_user, e, ui){
     // when a new user is selected, change username attribute of grouped permissions:
     grouped_permissions.attr('username', selected_user)
+ 
+    if (selected_user == "students") {
+        $('#group_members').text ('Group Members:student1, student2, student3, teaching_assistant')}
+
+    else if (selected_user == "employees") {
+        $('#group_members').text ('Group includes employee1, employee2, employee3')}
+    else $('#group_members').text('')
 })
 file_permission_users.css({
     'height':'80px',
