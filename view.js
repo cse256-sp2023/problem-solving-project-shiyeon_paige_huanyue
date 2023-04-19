@@ -6,7 +6,8 @@ let perm_id_prefix = "generated_permission"
 let new_panel = define_new_effective_permissions(perm_id_prefix, add_info_col = true, which_permissions = null)
 // Show a sidepanel of permissmissions (checkbox)
 $('#sidepanel').append(new_panel)
-
+//Show the history of changes
+$('#filestructure').append("What Is THis")
 //**hardcode the filepath here**
 $('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
 
@@ -351,4 +352,15 @@ $('.permbutton').append('Permissions')
 //open dialog with who the users are when icon is clicked
 $('.oi').click(function(e){
     console.log("clicked icon!");
+})
+
+//check if permission button is clicked
+if($('#permbutton').click(function (e){
+    update_changed_permission();})){
+    
+}
+
+$('#permbutton').click(function(e){
+    let path = e.currentTarget.getAttribute('path');
+    console.log(path)
 })
