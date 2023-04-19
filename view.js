@@ -7,7 +7,7 @@ let new_panel = define_new_effective_permissions(perm_id_prefix, add_info_col = 
 // Show a sidepanel of permissmissions (checkbox)
 $('#sidepanel').append(new_panel)
 //Show the history of changes
-$('#filestructure').append("What Is THis")
+//$('#filestructure').append("What Is THis")
 //**hardcode the filepath here**
 $('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
 
