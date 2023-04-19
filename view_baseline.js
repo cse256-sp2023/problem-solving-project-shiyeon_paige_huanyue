@@ -34,7 +34,7 @@ obj_name_div = $('<div id="permdialog_objname" class="section">Object Name: <spa
 
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text"><b>Grey checkmark☑: </b> permission inherited from parent folder/file. <br><b>Blue checkmark: </b>editable permissions on this level<br><b> click Advanced: </b>For inherited and special permissions or advanced settings.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text"><b>Grey checkmark☑: </b> permission inherited from parent folder/file. <br><b color="blue">Blue checkmark☑: </b>editable permissions on this level<br><b> click Advanced: </b>For inherited and special permissions or advanced settings.</div>')
 
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -50,7 +50,7 @@ file_permission_users.css({
 })
 
 // Make button to add a new user to the list:
-perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add...', on_user_change = function(selected_user){
+perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add User', on_user_change = function(selected_user){
     let filepath = perm_dialog.attr('filepath')
     if(selected_user && (selected_user.length > 0) && (selected_user in all_users)) { // sanity check that a user is actually selected (and exists)
         let expected_user_elem_id = `permdialog_file_user_${selected_user}`
