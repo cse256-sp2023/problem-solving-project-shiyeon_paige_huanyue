@@ -15,6 +15,14 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
             id: "perm-dialog-ok-button",
             click: function() {
                 $( this ).dialog( "close" );
+                user_name = $('#permdialog_grouped_permissions').attr('username')
+                file_path = $('#permdialog_grouped_permissions').attr('filepath')
+                $('#user_selected_btn').attr('username', user_name)
+                $('#generated_permission').attr('username', user_name)
+                $('#user_selected_btn_field').text(user_name)
+                $('#folder_selected_btn').attr('filepath', file_path)
+                $('#generated_permission').attr('filepath', file_path)
+                $('#folder_selected_btn_field').text(file_path)
             }
         },
         Advanced: {

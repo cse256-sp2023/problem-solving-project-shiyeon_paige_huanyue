@@ -9,7 +9,7 @@ $('#sidepanel').append(new_panel)
 //Show the history of changes
 //$('#filestructure').append("What Is THis")
 //**hardcode the filepath here**
-$('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
+//$('#generated_permission').attr('filepath', '/C/presentation_documents/important_file.txt')
 
 // Set id_prefix for user selector
 let user_id_prefix = "user_selected_btn"
