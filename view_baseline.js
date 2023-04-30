@@ -74,7 +74,11 @@ perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add User',
             file_permission_users.append(new_user_elem)
             alert("SUCCESSFUL ACTION ALERT: Adding a new user: "+ selected_user + ". Please select the user and make the furure change.");
             grouped_permissions.attr('username',selected_user);
+            $('#permdialog_file_user_list').attr('selected_item',selected_user);
+            //expected_user_elem_id.classList.add('ui-selected');
+            
         }
+        file_permission_users.find(`#${expected_user_elem_id}`).addClass('ui-selected');
     }    
 })
 perm_add_user_select.find('span').hide()// Cheating a bit - just show the button from the user select; hide the part that displays the username.
@@ -123,6 +127,7 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
                 // Finally, close this dialog:
                 $( this ).dialog( "close" );
                 alert("SUCCESSFUL ACTION ALERT: Removing the user: "+all_users[username]);
+                $('#permdialog_file_user_list').attr('selected_item','');
 
             },
         },
