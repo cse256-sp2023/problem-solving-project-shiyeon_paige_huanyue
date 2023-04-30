@@ -7,8 +7,8 @@ show_starter_dialogs = false // set this to "false" to disable the survey and 3-
 // Make permissions dialog:
 perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
     // The following are standard jquery-ui options. See https://jqueryui.com/dialog/
-    height: 500,
-    width: 400,
+    height: 570,
+    width: 470,
     buttons: {
         OK:{
             text: "OK",
@@ -34,7 +34,7 @@ obj_name_div = $('<div id="permdialog_objname" class="section">Object Name: <spa
 
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text"><b>Grey checkmark☑: </b> permission inherited from parent folder/file. <br><b color="blue">Blue checkmark☑: </b>editable permissions on this level<br><b> click Advanced: </b>For inherited and special permissions or advanced settings.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text"><b>Grey checkmark☑: </b> permission inherited from parent folder/file. <br><b color="blue">Blue checkmark☑: </b>editable permissions on this level<br></div>')
 
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -156,6 +156,7 @@ perm_remove_user_button.click(function(){
 
 
 // --- Append all the elements to the permissions dialog in the right order: --- 
+perm_dialog.append($('<div id="permissions_user_des" style="color:red">Please select the user first, and then adjust the editable permissions(blue) by using the following checkbox.To change inherited and special permissions(grey) <b>click advanced settings</b>.</div><br>'))
 perm_dialog.append(obj_name_div)
 perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div>'))
 perm_dialog.append(file_permission_users)
@@ -365,10 +366,10 @@ $('#adv_perm_inheritance').change(function(){
     else {
         // has just been turned off - pop up dialog with add/remove/cancel
         $(`<div id="add_remove_cancel" title="Security">
-            Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
-            - Click Convert to convert and add inherited parent permissions as explicit permissions on this object<br/>
-            - Click Remove to remove inherited parent permissions from this object<br/>
-            - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
+            Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/><br/>
+            - Click "Convert" to convert and add inherited parent permissions as explicit permissions on this object<i><b>(Using for modifying users' permissions from inherted level into explicit permissions, which are editable.)</b></i><br/>
+            - Click "Remove" to remove inherited parent permissions from this object<i><b>(Using for modifying all inherted permissions. !Rarely used!)</b></i><br/>
+            - Click "Cancel" if you do not want to modify inheritance settings at this time.<br/>
         </div>`).dialog({ // TODO: don't create this dialog on the fly
             modal: true,
             width: 400,
